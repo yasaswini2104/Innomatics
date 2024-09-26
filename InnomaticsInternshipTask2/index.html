@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Directory Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="company-icon.ico" type="image/x-icon">
+
+
+</head>
+<body>
+    <section class="all">
+        <section class="title">
+            <header class="head"><h1>Company Directory Portal</h1></header>
+        </section>
+
+        <section class="emp-form">
+            <h1>Employee Registration Form</h1>
+            <form id="form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="dept">Department:</label>
+                <select id="dept" name="dept" required>
+                    <option value="">Select Department</option>
+                    <option value="IT">IT</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Marketing">Marketing</option>
+                </select><br>
+
+                <label for="empid">Employee Id:</label>
+                <input type="number" id="empid" name="empid" min="1" required><br>
+
+                <label for="ppurl">Profile Picture URL:</label>
+                <input type="url" id="ppurl" name="ppurl" pattern="https?://.*"><br><br>
+
+                <button type="submit">Register Employee</button>
+            </form>
+        </section>
+
+        <section class="emp-list">
+            <div class="emp1">
+                <h2>Employee List</h2>
+                <ul id="employeeList">
+                    <!-- Employees will be dynamically added here -->
+                </ul>
+            </div>
+            
+            <div class="emp2">
+                <h2>Employee Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Employee ID</th>
+                            <th>Department</th>
+                            <th>Profile Picture</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeTable">
+                        <!-- Employee details will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Embedded Google Map -->
+        <section class="map">
+            <h2>Our Location</h2>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243.0402398043405!2d78.38999!3d17.49803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91f3fdf6bde9%3A0x752db86a6ab3be2a!2sInnomatics%20Research%20Labs!5e0!3m2!1sen!2sin!4v1695837599444!5m2!1sen!2sin"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+    </section>
+
+    <script>
+        let employees = [];
+
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form submission
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const employeeID = document.getElementById('empid').value;
+            const department = document.getElementById('dept').value;
+            const profilePic = document.getElementById('ppurl').value;
+
+            // Create employee object
+            const employee = {
+                name: name,
+                email: email,
+                employeeID: employeeID,
+                department: department,
+                profilePic: profilePic
+            };
+
+            // Add to employees array
+            employees.push(employee);
+
+            // Update employee list and table
+            updateEmployeeList();
+            updateEmployeeTable();
+
+            // Clear form fields
+            document.getElementById('form').reset();
+        });
+
+        function updateEmployeeList() {
+            const employeeList = document.getElementById('employeeList');
+            employeeList.innerHTML = '';
+
+            employees.forEach((employee, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `${index + 1}. <a href="#">${employee.name} - ${employee.email}</a>`;
+                employeeList.appendChild(li);
+            });
+        }
+
+        function updateEmployeeTable() {
+            const employeeTable = document.getElementById('employeeTable');
+            employeeTable.innerHTML = '';
+
+            employees.forEach(employee => {
+                const row = document.createElement('tr');
+
+                const nameCell = document.createElement('td');
+                nameCell.textContent = employee.name;
+
+                const idCell = document.createElement('td');
+                idCell.textContent = employee.employeeID;
+
+                const departmentCell = document.createElement('td');
+                departmentCell.textContent = employee.department;
+
+                const profilePicCell = document.createElement('td');
+                const img = document.createElement('img');
+                img.src = employee.profilePic;
+                img.alt = 'Profile Picture';
+                img.width = 50;
+                img.height = 50;
+                profilePicCell.appendChild(img);
+
+                row.appendChild(nameCell);
+                row.appendChild(idCell);
+                row.appendChild(departmentCell);
+                row.appendChild(profilePicCell);
+
+                employeeTable.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>
