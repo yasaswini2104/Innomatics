@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    line-height: 1.6;
+    transition: background-color 0.3s ease;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: 
+    "header"
+    "content"
+    "signup"
+    "feature1"
+    "feature2"
+    "feature3";
+    grid-gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+header {
+    grid-area: header;
+    background: linear-gradient(135deg, #004d40, #00796b);
+    color: white;
+    text-align: center;
+    padding: 40px;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+header:hover {
+    background: linear-gradient(135deg, #00796b, #004d40);
+}
+
+.content {
+    grid-area: content;
+    background-color: #ffffff;
+    padding: 50px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.content:hover {
+    background-color: #e0f7fa;
+    transform: translateY(-10px);
+}
+
+.signup {
+    grid-area: signup;
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: white;
+    padding: 50px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.signup:hover {
+    background: linear-gradient(135deg, #f57c00, #ff9800);
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+
+.feature1, .feature2, .feature3 {
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.feature1 {
+    grid-area: feature1;
+    background: linear-gradient(135deg, #03a9f4, #0288d1);
+}
+
+.feature2 {
+    grid-area: feature2;
+    background: linear-gradient(135deg, #f44336, #e53935);
+}
+
+.feature3 {
+    grid-area: feature3;
+    background: linear-gradient(135deg, #ab47bc, #8e24aa);
+}
+
+.feature1:hover, .feature2:hover, .feature3:hover {
+    transform: translateY(-10px);
+}
+
+footer {
+    grid-area: footer;
+    background: linear-gradient(135deg, #004d40, #00796b);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 600px) {
+    .container {
+        grid-template-areas: 
+        "header header"
+        "content signup"
+        "feature1 feature2"
+        "feature3 feature3";
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        grid-template-areas: 
+        "header header header"
+        "feature1 feature2 feature3"
+        "signup signup signup"
+        "content content content";
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.signup:hover {
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.feature1:hover, .feature2:hover, .feature3:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+button {
+    background-color: #004d40;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00796b;
+}
